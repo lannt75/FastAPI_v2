@@ -1,15 +1,15 @@
-from typing import Optional
-from fastapi import FastAPI
-from pydantic import BaseModel
-from datetime import datetime
-from typing import Union
-
-
-app = FastAPI()
-
-@app.get("/")
-def root():
-    return {"Hello World"}
+# from typing import Optional
+# from fastapi import FastAPI
+# from pydantic import BaseModel
+# from datetime import datetime
+# from typing import Union
+#
+#
+# app = FastAPI()
+#
+# @app.get("/")
+# def root():
+#     return {"Hello World"}
 
 # API truyền parameter qua path
 # app = FastAPI()
@@ -40,26 +40,26 @@ def root():
 # async def create_infor(infor_id: int, infor: Infor):
 #     return {"infor_id": infor_id, **infor.dict()}
 
-# from fastapi import FastAPI, File, UploadFile, Request
-# from fastapi.responses import HTMLResponse
-# from fastapi.templating import Jinja2Templates
-# import json
-#
-# app = FastAPI()
-#
-# templates = Jinja2Templates(directory="templates")
-#
-# @app.get("/infor", response_class=HTMLResponse) #response return là html
-# def post(request=Request):
-#     return templates.TemplateResponse("ex1.html", {"request": request})
-#
-# @app.post("/post")
-# async def read(file: UploadFile = File(...)): #đọc file json được post lên
-#     contents = await file.read()
-#     data_submit = json.loads(contents.decode("utf-8"))
-#
-#     name = data_submit["name"]
-#     address = data_submit["address"]
-#     return name + address
+from fastapi import FastAPI, File, UploadFile, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+import json
+
+app = FastAPI()
+
+templates = Jinja2Templates(directory="templates")
+
+@app.get("/infor", response_class=HTMLResponse) #response return là html
+def post(request=Request):
+    return templates.TemplateResponse("ex1.html", {"request": request})
+
+@app.post("/post")
+async def read(file: UploadFile = File(...)): #đọc file json được post lên
+    contents = await file.read()
+    data_submit = json.loads(contents.decode("utf-8"))
+
+    name = data_submit["name"]
+    address = data_submit["address"]
+    return name + address
 
 
